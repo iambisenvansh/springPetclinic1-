@@ -17,7 +17,9 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 test'
+                withEnv(['JAVA_TOOL_OPTIONS=-Duser.timezone=Asia/Kolkata']) {
+                    bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 test'
+                }
             }
         }
 
@@ -37,10 +39,6 @@ pipeline {
 
         failure {
             echo 'CI Pipeline failed. Check the console output.'
-        }
-
-        always {
-            echo 'Pipeline execution finished.'
         }
     }
 }
