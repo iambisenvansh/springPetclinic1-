@@ -20,6 +20,15 @@ pipeline {
                 bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 test'
             }
         }
+        
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 sonar:sonar -Dsonar.projectKey=spring-petclinic'
+        }
+    }
+}
+
     }
 
     post {
