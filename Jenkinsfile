@@ -11,13 +11,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvnw.cmd -B -DskipTests package'
+                bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 -DskipTests package'
             }
         }
 
         stage('Unit Tests') {
             steps {
-                bat 'mvnw.cmd -B test'
+                bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 test'
             }
         }
     }
