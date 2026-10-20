@@ -24,11 +24,22 @@ pipeline {
         }
 
         
+
 stage('OWASP Dependency-Check') {
     steps {
-        bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 org.owasp:dependency-check-maven:12.1.0:check -DfailBuildOnCVSS=11'
+        withCredentials([
+            string(
+                credentialsId: 'nvd-api-key',
+                variable: 'NVD_API_KEY'
+            )
+        ]) {
+            bat '''
+                mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 org.owasp:dependency-check-maven:12.1.0:check -DnvdApiKey=%NVD_API_KEY% -DnvdMaxRetryCount=10 -DfailBuildOnCVSS=11
+            '''
+        }
     }
 }
+
 
 
        
