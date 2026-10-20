@@ -23,6 +23,14 @@ pipeline {
             }
         }
 
+        
+stage('OWASP Dependency-Check') {
+    steps {
+        bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 org.owasp:dependency-check-maven:12.1.0:check -DfailBuildOnCVSS=11'
+    }
+}
+
+
        
     }
 
