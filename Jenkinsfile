@@ -24,6 +24,7 @@ pipeline {
         }
 
         
+
 stage('OWASP Dependency-Check') {
     steps {
         withCredentials([
@@ -33,13 +34,12 @@ stage('OWASP Dependency-Check') {
             )
         ]) {
             bat '''
-
-mvnw.cmd -B -Dmaven.repo.local=C:\JenkinsData\m2 org.owasp:dependency-check-maven:12.1.0:check -DnvdApiKeyEnvironmentVariable=NVD_API_KEY -DnvdMaxRetryCount=10 -DossIndexAnalyzerEnabled=false -DfailBuildOnCVSS=11
-
+                mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 org.owasp:dependency-check-maven:12.1.0:check -DnvdApiKeyEnvironmentVariable=NVD_API_KEY -DnvdMaxRetryCount=10 -DossIndexAnalyzerEnabled=false -DfailBuildOnCVSS=11
             '''
         }
     }
 }
+
 
     }
 
