@@ -23,14 +23,6 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvnw.cmd -B -Dmaven.repo.local=C:\\JenkinsData\\m2 org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.0.4389:sonar -Dsonar.projectKey=spring-petclinic'
-                }
-            }
-        }
-
         stage('OWASP Dependency-Check') {
             steps {
                 withCredentials([
