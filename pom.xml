@@ -303,6 +303,7 @@
           <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
         </configuration>
       </plugin>
+      
       <!-- Spring Boot Actuator displays sbom-related information if a CycloneDX SBOM file is
       present at the classpath -->
       <plugin>
@@ -310,7 +311,19 @@
         <groupId>org.cyclonedx</groupId>
         <artifactId>cyclonedx-maven-plugin</artifactId>
       </plugin>
+      
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>12.1.0</version>
+        <configuration>
+          <ossIndexAnalyzerEnabled>false</ossIndexAnalyzerEnabled>
+          <failBuildOnCVSS>11</failBuildOnCVSS>
+        </configuration>
+      </plugin>
+
     </plugins>
+    
   </build>
   <licenses>
     <license>
